@@ -11,7 +11,7 @@ defineProps({
 
 <template>
     <button :id="id">
-        <span v-show="isIcon">+</span>
+        <span v-if="isIcon">+</span>
         <slot></slot>
     </button>
 </template>
