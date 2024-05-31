@@ -1,17 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { defineProps } from "vue";
 
 import AppListItem from "@/components/AppListItem.vue";
 
-const data = ref([
-    {
-        id: 0,
-        category: "Одежда",
-        date: "2023-06-28",
-        price: 1000,
-        type: "exp",
-    },
-]);
+defineProps({
+    data: Array,
+});
 </script>
 
 <template>

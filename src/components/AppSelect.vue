@@ -1,1 +1,6 @@
-<template>Select <slot></slot></template>
+<template>
+    <div>
+        <slot name="caption"></slot>
+        <slot></slot>
+    </div>
+</template>

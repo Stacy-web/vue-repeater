@@ -1,10 +1,34 @@
 <script setup>
+import { defineModel } from "vue";
+
 import AppSelect from "@/components/AppSelect.vue";
 import AppSelectOption from "@/components/AppSelectOption.vue";
+
+const model = defineModel({
+    type: [String, null],
+    default: null,
+});
+
+function onSelect(value) {
+    model.value = value;
+}
 </script>
 
 <template>
     <app-select>
-        <app-select-option />
+        <template #caption>Тип операции</template>
+        <app-select-option
+            value="inc"
+            @select-option="onSelect"
+            >Доход</app-select-option
+        >
+        <app-select-option
+            value="exp"
+            @select-option="onSelect"
+            >Расход</app-select-option
+        >
+    </app-select>
+    <app-select>
+        <template #caption>Категория</template>
     </app-select>
 </template>
