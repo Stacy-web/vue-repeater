@@ -16,7 +16,8 @@ defineEmits(["selectOption"]);
         <a
             href=""
             @click.prevent="(e) => $emit('selectOption', value)"
-            ><slot></slot
-        ></a>
+        >
+            <slot></slot>
+        </a>
     </li>
 </template>

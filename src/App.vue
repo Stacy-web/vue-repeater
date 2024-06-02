@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import AppHeader from "@/components/AppHeader.vue";
 import AppFilters from "@/components/AppFilters.vue";
@@ -25,23 +25,30 @@ const budgetOperations = ref([
     },
 ]);
 
-const inp = ref(0);
+const filterBudgetOperations = computed(() => {
+    if (filter.value) {
+        return budgetOperations.value.filter(
+            (item) => item.type === filter.value
+        );
+    }
+
+    return budgetOperations.value;
+});
 </script>
 
 <template>
+    <app-header />
     <div class="container">
-        <app-header />
         {{ filter }}
         <app-filters v-model="filter" />
         <app-groups />
-        <app-list :data="budgetOperations" />
+        <app-list :data="filterBudgetOperations" />
     </div>
-
-    {{ inp }}
-    <input
-        type="text"
-        v-model="inp"
-    />
 </template>
 
-<style></style>
+<style lang="scss">
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+</style>

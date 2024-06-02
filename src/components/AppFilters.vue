@@ -1,5 +1,5 @@
 <script setup>
-import { defineModel } from "vue";
+import { ref, defineModel } from "vue";
 
 import AppSelect from "@/components/AppSelect.vue";
 import AppSelectOption from "@/components/AppSelectOption.vue";
@@ -12,10 +12,13 @@ const model = defineModel({
 function onSelect(value) {
     model.value = value;
 }
+
+const t = ref("test");
 </script>
 
 <template>
-    <app-select>
+    {{ t }}
+    <app-select v-model="t">
         <template #caption>Тип операции</template>
         <app-select-option
             value="inc"
@@ -27,8 +30,5 @@ function onSelect(value) {
             @select-option="onSelect"
             >Расход</app-select-option
         >
-    </app-select>
-    <app-select>
-        <template #caption>Категория</template>
     </app-select>
 </template>
