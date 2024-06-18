@@ -1,34 +1,16 @@
 <script setup>
-import { ref, defineModel } from "vue";
-
-import AppSelect from "@/components/AppSelect.vue";
-import AppSelectOption from "@/components/AppSelectOption.vue";
+import { defineModel } from "vue";
 
 const model = defineModel({
     type: [String, null],
     default: null,
 });
-
-function onSelect(value) {
-    model.value = value;
-}
-
-const t = ref("test");
 </script>
 
 <template>
-    {{ t }}
-    <app-select v-model="t">
+    <form-select v-model="model">
         <template #caption>Тип операции</template>
-        <app-select-option
-            value="inc"
-            @select-option="onSelect"
-            >Доход</app-select-option
-        >
-        <app-select-option
-            value="exp"
-            @select-option="onSelect"
-            >Расход</app-select-option
-        >
-    </app-select>
+        <form-select-option value="inc">Доход</form-select-option>
+        <form-select-option value="exp">Расход</form-select-option>
+    </form-select>
 </template>

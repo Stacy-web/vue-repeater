@@ -5,6 +5,7 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppFilters from "@/components/AppFilters.vue";
 import AppGroups from "@/components/AppGroups.vue";
 import AppList from "@/components/AppList.vue";
+import AppForm from "@/components/AppForm.vue";
 
 const filter = ref();
 
@@ -34,12 +35,16 @@ const filterBudgetOperations = computed(() => {
 
     return budgetOperations.value;
 });
+
+function addOperation(value) {
+    budgetOperations.value.push(value);
+}
 </script>
 
 <template>
     <app-header />
+    <app-form @add-operation="addOperation" />
     <div class="container">
-        {{ filter }}
         <app-filters v-model="filter" />
         <app-groups />
         <app-list :data="filterBudgetOperations" />

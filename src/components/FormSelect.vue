@@ -1,17 +1,16 @@
 <script setup>
-import { ref, defineModel } from "vue";
+import { ref, defineModel, provide } from "vue";
 
-const model = defineModel();
-
+const selected = defineModel();
 const isFocus = ref(false);
 
-function test(v) {
-    console.log(v);
-}
+provide("select", {
+    isFocus,
+    selected,
+});
 </script>
 
 <template>
-    {{ model }}
     <div class="custom-select">
         <a
             href=""
