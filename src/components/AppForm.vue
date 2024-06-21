@@ -19,7 +19,6 @@ function test() {
 </script>
 
 <template>
-    {{ formData }}
     <form
         action=""
         @submit.prevent="test"

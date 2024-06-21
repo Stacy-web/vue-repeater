@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^8.8.0",
+    "axios": "^1.7.2",
     "core-js": "^3.8.3",
     "sass": "^1.77.4",
     "sass-loader": "^14.2.1",
