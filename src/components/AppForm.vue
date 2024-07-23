@@ -1,27 +1,26 @@
 <script setup>
-import { reactive, defineEmits } from "vue";
+import { reactive, inject, defineModel } from "vue";
 import { ru } from "date-fns/locale";
 
 const formData = reactive({
     date: "",
-    type: "",
+    type: "exp",
     category: "",
     sum: "",
     comment: "",
 });
+const model = defineModel();
+const categories = inject("categories");
 
-const emit = defineEmits(["addOperation"]);
-
-function test() {
-    console.log("submit");
-    emit("addOperation", formData);
+function onSubmit() {
+    model.value.push(formData);
 }
 </script>
 
 <template>
     <form
         action=""
-        @submit.prevent="test"
+        @submit.prevent="onSubmit"
     >
         <label for="">
             <VueDatePicker
@@ -36,17 +35,17 @@ function test() {
             />
         </label>
         <label for="">
-            <form-select v-model="formData.type">
-                <template #caption>Тип операции</template>
-                <form-select-option value="inc">Доход</form-select-option>
-                <form-select-option value="exp">Расход</form-select-option>
-            </form-select>
-        </label>
-        <label for="">
-            <form-select v-model="formData.category">
+            <form-select
+                v-model="formData.category"
+                v-if="categories"
+            >
                 <template #caption>Категория</template>
-                <form-select-option value="inc">Доход</form-select-option>
-                <form-select-option value="exp">Расход</form-select-option>
+                <form-select-option
+                    v-for="category in categories"
+                    :key="category.id"
+                    :value="category.id"
+                    >{{ category.name }}</form-select-option
+                >
             </form-select>
         </label>
         <label for="">

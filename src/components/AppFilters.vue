@@ -15,7 +15,10 @@ const categories = inject("categories");
         <form-select-option value="inc">Доход</form-select-option>
         <form-select-option value="exp">Расход</form-select-option>
     </form-select>
-    <form-select v-model="model.category">
+    <form-select
+        v-model="model.category"
+        v-if="categories"
+    >
         <template #caption>Категория</template>
         <form-select-option
             v-for="category in categories"

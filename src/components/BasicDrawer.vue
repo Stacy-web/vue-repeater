@@ -1,12 +1,15 @@
 <script setup>
-import AppForm from "@/components/AppForm.vue";
+import { defineProps } from "vue";
+
+defineProps({
+    title: String,
+});
 </script>
 
 <template>
     <div class="drawer">
-        <h2>Добавление расхода</h2>
-
-        <app-form />
+        <h2>{{ title }}</h2>
+        <slot></slot>
     </div>
 </template>
 
