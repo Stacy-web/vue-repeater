@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 const balance = ref(0);
+const { toggleDrawer } = inject("drawer");
+const setCurrentOperationType = inject("currentOperationType");
 </script>
 
 <template>
@@ -10,8 +12,20 @@ const balance = ref(0);
             <h1 class="title">
                 Баланс: <span>{{ balance }}</span>
             </h1>
-            <basic-button>Расход</basic-button>
-            <basic-button>Доход</basic-button>
+            <basic-button
+                @click="
+                    toggleDrawer();
+                    setCurrentOperationType('exp');
+                "
+                >Расход</basic-button
+            >
+            <basic-button
+                @click="
+                    toggleDrawer();
+                    setCurrentOperationType('inc');
+                "
+                >Доход</basic-button
+            >
         </div>
     </header>
 </template>

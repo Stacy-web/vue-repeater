@@ -3,11 +3,18 @@ import { defineProps } from "vue";
 
 defineProps({
     title: String,
+    isOpen: {
+        type: Boolean,
+        default: false,
+    },
 });
 </script>
 
 <template>
-    <div class="drawer">
+    <div
+        class="drawer"
+        v-if="isOpen"
+    >
         <h2>{{ title }}</h2>
         <slot></slot>
     </div>

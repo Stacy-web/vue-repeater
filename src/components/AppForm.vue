@@ -1,23 +1,30 @@
 <script setup>
-import { reactive, inject, defineModel } from "vue";
+import { reactive, defineProps, inject, defineEmits } from "vue";
+
 import { ru } from "date-fns/locale";
+
+const props = defineProps({
+    type: String,
+});
 
 const formData = reactive({
     date: "",
-    type: "exp",
+    type: props.type,
     category: "",
-    sum: "",
+    price: 0,
     comment: "",
 });
-const model = defineModel();
 const categories = inject("categories");
 
+const emit = defineEmits(["add-operation"]);
+
 function onSubmit() {
-    model.value.push(formData);
+    emit("add-operation", formData);
 }
 </script>
 
 <template>
+    {{ formData }}
     <form
         action=""
         @submit.prevent="onSubmit"
@@ -54,7 +61,7 @@ function onSubmit() {
                 name=""
                 id=""
                 placeholder="Сумма"
-                v-model="formData.sum"
+                v-model.number="formData.price"
             />
         </label>
         <label for="">
