@@ -12,20 +12,26 @@ const setCurrentOperationType = inject("currentOperationType");
             <h1 class="title">
                 Баланс: <span>{{ balance }}</span>
             </h1>
-            <basic-button
-                @click="
-                    toggleDrawer();
-                    setCurrentOperationType('exp');
-                "
-                >Расход</basic-button
-            >
-            <basic-button
-                @click="
-                    toggleDrawer();
-                    setCurrentOperationType('inc');
-                "
-                >Доход</basic-button
-            >
+            <div class="header__btn-group">
+                <basic-button
+                    @click="
+                        toggleDrawer();
+                        setCurrentOperationType('exp');
+                    "
+                >
+                    <template #icon>-</template>
+                    Расход
+                </basic-button>
+                <basic-button
+                    @click="
+                        toggleDrawer();
+                        setCurrentOperationType('inc');
+                    "
+                >
+                    <template #icon>+</template>
+                    Доход
+                </basic-button>
+            </div>
         </div>
     </header>
 </template>
@@ -34,5 +40,14 @@ const setCurrentOperationType = inject("currentOperationType");
 .header {
     background-color: #f6f6f6;
     padding-top: 100px;
+
+    &__btn-group {
+        display: flex;
+        align-items: stretch;
+
+        & > *:first-child {
+            margin-right: 12px;
+        }
+    }
 }
 </style>

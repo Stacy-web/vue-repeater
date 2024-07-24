@@ -8,6 +8,8 @@ import BasicButton from '@/components/BasicButton.vue'
 import FormSelect from '@/components/FormSelect.vue'
 import FormSelectOption from '@/components/FormSelectOption.vue'
 
+import './main.scss'
+
 const app = createApp(App)
 
 app.component(

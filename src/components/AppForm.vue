@@ -6,25 +6,27 @@ import { ru } from "date-fns/locale";
 const props = defineProps({
     type: String,
 });
-
-const formData = reactive({
+const initialData = {
     date: "",
     type: props.type,
     category: "",
     price: 0,
     comment: "",
-});
+};
+const formData = reactive({ ...initialData });
 const categories = inject("categories");
+const { toggleDrawer } = inject("drawer");
 
 const emit = defineEmits(["add-operation"]);
 
 function onSubmit() {
     emit("add-operation", formData);
+    Object.assign(formData, initialData);
+    toggleDrawer();
 }
 </script>
 
 <template>
-    {{ formData }}
     <form
         action=""
         @submit.prevent="onSubmit"

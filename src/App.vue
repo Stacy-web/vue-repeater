@@ -11,21 +11,22 @@ import AppForm from "@/components/AppForm.vue";
 
 import BasicDrawer from "@/components/BasicDrawer.vue";
 
-const filter = reactive({});
+const currentOperationType = ref(null);
+const filter = reactive({
+    type: currentOperationType,
+});
 const drawer = reactive({
     isOpen: false,
     title: "",
 });
-const currentOperationType = ref();
 const budgetCategories = ref([]);
 const budgetOperations = ref([]);
 
-provide("categories", budgetCategories);
 provide("drawer", { drawer, toggleDrawer });
 provide("currentOperationType", setCurrentOperationType);
 
 const filterBudgetOperations = computed(() => {
-    if ("type" in filter) {
+    if ("type" in filter && filter.type) {
         return budgetOperations.value.filter(
             (item) => item.type === filter.type
         );
@@ -39,6 +40,13 @@ const filterBudgetOperations = computed(() => {
 
     return budgetOperations.value;
 });
+const filterBudgetCategories = computed(() => {
+    return budgetCategories.value.filter(
+        (item) => item.type === currentOperationType.value
+    );
+});
+
+provide("categories", filterBudgetCategories);
 
 onMounted(async () => {
     try {
