@@ -1,8 +1,15 @@
-<script setup></script>
+<script setup>
+import { defineSlots } from "vue";
+
+const slots = defineSlots();
+</script>
 
 <template>
     <button class="btn">
-        <span class="btn__icon">
+        <span
+            class="btn__icon"
+            v-if="slots.icon"
+        >
             <slot name="icon"></slot>
         </span>
 
@@ -12,13 +19,19 @@
 
 <style scoped lang="scss">
 .btn {
-    background: $primary;
     padding: 12px 20px;
-    color: #fff;
     border: 0 none;
     cursor: pointer;
     display: flex;
     align-items: center;
+    background: transparent;
+    color: $primary;
+    border: 1px solid $primary;
+
+    &:has(.btn__icon) {
+        background: $primary;
+        color: #fff;
+    }
 
     &__icon:not(:empty) {
         border: 1.9px solid #fff;

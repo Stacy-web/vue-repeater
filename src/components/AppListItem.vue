@@ -22,7 +22,7 @@ defineProps({
         <span>{{ price }}</span>
         <p v-if="comment">{{ comment }}</p>
 
-        <basic-button :isIcon="false">Редактировать</basic-button>
-        <basic-button :isIcon="false">Удалить</basic-button>
+        <basic-button>Редактировать</basic-button>
+        <basic-button>Удалить</basic-button>
     </li>
 </template>

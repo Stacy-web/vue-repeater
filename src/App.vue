@@ -45,6 +45,9 @@ const filterBudgetCategories = computed(() => {
         (item) => item.type === currentOperationType.value
     );
 });
+const balance = computed(() => {
+    return budgetOperations.value.reduce((sum, item) => sum + item.price, 0);
+});
 
 provide("categories", filterBudgetCategories);
 
@@ -84,7 +87,7 @@ async function addOperation(item) {
 </script>
 
 <template>
-    <app-header />
+    <app-header :balance="balance" />
     <div class="container">
         <app-filters v-model="filter" />
         <app-groups />

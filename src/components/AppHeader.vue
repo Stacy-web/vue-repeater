@@ -1,7 +1,9 @@
 <script setup>
-import { ref, inject } from "vue";
+import { inject, defineProps } from "vue";
 
-const balance = ref(0);
+defineProps({
+    balance: Number,
+});
 const { toggleDrawer } = inject("drawer");
 const setCurrentOperationType = inject("currentOperationType");
 </script>
@@ -10,7 +12,8 @@ const setCurrentOperationType = inject("currentOperationType");
     <header class="header">
         <div class="container">
             <h1 class="title">
-                Баланс: <span>{{ balance }}</span>
+                <span>Баланс:</span>
+                {{ balance.toLocaleString("ru") }} ₽
             </h1>
             <div class="header__btn-group">
                 <basic-button

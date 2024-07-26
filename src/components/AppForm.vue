@@ -20,6 +20,10 @@ const { toggleDrawer } = inject("drawer");
 const emit = defineEmits(["add-operation"]);
 
 function onSubmit() {
+    if (props.type === "exp") {
+        formData.price = formData.price * -1;
+    }
+
     emit("add-operation", formData);
     Object.assign(formData, initialData);
     toggleDrawer();
